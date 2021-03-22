@@ -1,0 +1,34 @@
+{% extends "blogapp/../base.html" %}
+{% block title %} Dashboard {% endblock title %}
+{% block content %}
+    <h1>{{ welcome }}</h1>
+
+    {% for message in messages %}
+        <p>{{ message }}</p>
+    {% endfor %}
+
+    <div>
+        {% if public_posts %}
+            <p class="text-center">
+                PUBLIC POSTS
+                {% if search_for %}
+                    OF {{ search_for }}
+                {% endif %}
+            </p>
+
+        {% endif %}
+
+        {% for post in public_posts %}
+            <p> {{ post.title }} </p>
+            <p> {{ post.description }} </p>
+            {% if post.image %}
+                <img src="{{ post.image.url }}"
+                style="height: 20rem; width: 20rem;"
+                alt="">
+            {% endif %}
+        {% empty %}
+            <h1>No public posts available</h1>
+        {% endfor %}
+    </div>
+
+{% endblock content %}

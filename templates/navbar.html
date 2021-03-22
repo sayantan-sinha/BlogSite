@@ -1,0 +1,27 @@
+{% if request.user.is_authenticated %}
+    <ul>
+        <li>
+            <a href="{% url 'blogapp:dashboard' %}"> Home </a>
+            <a href="{% url 'blogapp:compose' %}"> Compose Article</a>
+            <form action="{% url 'blogapp:search_users' %}" method="POST">
+                {% csrf_token %}
+                <input type="text" name="search_for" placeholder="Search users">
+                <button type="submit" style="visibility: hidden;"> </button>
+            </form>
+        </li>
+    </ul>
+{% endif %}
+<span>
+    {% if request.user.is_authenticated %}
+    <a href="{% url 'blogapp:logout' %}">Logout</a>
+    Hello @ <i>{{user.username}}</i>
+
+    {% else %}
+
+    <div>
+        <a href="{% url 'blogapp:login' %}"> Log-in </a>
+        <a href="{% url 'blogapp:register' %}"> Register </a>
+    </div>
+
+    {% endif %}
+</span>

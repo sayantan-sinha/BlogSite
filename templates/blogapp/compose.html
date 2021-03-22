@@ -1,0 +1,24 @@
+{% extends "blogapp/../base.html" %}
+{%  block title %} Compose {% endblock title %}
+{%  block content %}
+    <h1> {{ write }} </h1>
+
+    <form action="{% url 'blogapp:compose' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="title"> Title </label>
+        {{ form.title }}
+        <hr>
+
+        <label for="description"> Description </label>
+        {{ form.description }}
+        <label for="image"> Add image </label>
+        {{ form.image }}
+        <hr>
+
+        {{ form.is_public }}
+        <label for="">Post as public</label>
+
+        <button> POST </button>
+    </form>
+
+{% endblock content %}
